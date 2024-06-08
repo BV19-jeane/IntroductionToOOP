@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+#define delimiter "\n----------------------------------------------\n"
 
 //Объявляя структуру или класс мы создаем новый тип данных (пользовательский тип данных)
 class Point
@@ -40,7 +41,7 @@ public:
 		this->y = y;
 		cout << "Constructor: \t\t" << this << endl;
 	}
-
+	
 	Point(const Point& other)
 	{
 		this->x = other.x;
@@ -50,6 +51,15 @@ public:
 	~Point()
 	{
 		cout << "Destructor: \t \t" << this << endl;
+	}
+
+	//Operators:
+	Point& operator = (const Point& other)
+	{
+		this->x = other.x;
+		this->y= other.y;
+		cout << "CopyAssignment: \t\t" << this << endl;
+		return *this;
 	}
 
 	// Methods:
@@ -69,8 +79,9 @@ public:
 
 
 //#define STRUCT_POINT
-#define CONSTRUCTORS_CHECK
+//#define CONSTRUCTORS_CHECK
 //#define DISTANCE_CHECK
+#define ASSIGNMENT_CHECK
 
 void main()
 {
@@ -105,6 +116,10 @@ void main()
 	Point D = C; //Copy constructor
 	D.print();
 
+	Point E;
+	E = D;
+	E.print();
+
 	A.distance(B);
 
 #endif // CONSTRUCTORS_CHECK
@@ -118,8 +133,31 @@ void main()
 
 	cout << endl;
 	cout << "Расстояние от точки 'A' до точки 'B': " << A.distance(B) << endl;
+	cout << delimiter << endl;
 	cout << "Расстояние от точки 'B' до точки 'A': " << B.distance(A) << endl;
 #endif // DISTANCE_CHECK
+
+#ifdef ASSIGNMENT_CHECK
+	int a, b, c;
+	a = b = c = 0;
+	cout << a << "\t" << b << "\t" << c << endl;
+
+	Point A, B, C;
+
+	cout << delimiter << endl;
+	A = B = C = Point(2, 3); //Point(2, 3) - явно вызываем конструктор
+	                         // и создаем временный безымянный объект
+	                         // этот объект и передается как параметр
+	                         // в первый CopyAssignment
+	cout << delimiter << endl;
+
+	A.print();
+	B.print();
+	C.print();
+
+	
+#endif // ASSIGNMENT_CHECK
+
 
 	
 }
