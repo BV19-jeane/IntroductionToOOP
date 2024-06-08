@@ -40,6 +40,13 @@ public:
 		this->y = y;
 		cout << "Constructor: \t\t" << this << endl;
 	}
+
+	Point(const Point& other)
+	{
+		this->x = other.x;
+		this->y = other.y;
+		cout << "CopyConstructor:\t" << this << endl;
+	}
 	~Point()
 	{
 		cout << "Destructor: \t \t" << this << endl;
@@ -58,8 +65,12 @@ public:
 		cout << "X = " << x << "\ty = " << y << endl;
 	}
 };
+
+
+
 //#define STRUCT_POINT
-//#defined CONSTRUCTORS_CHECK
+#define CONSTRUCTORS_CHECK
+//#define DISTANCE_CHECK
 
 void main()
 {
@@ -91,10 +102,14 @@ void main()
 	Point C(2, 3);
 	C.print();
 
+	Point D = C; //Copy constructor
+	D.print();
+
 	A.distance(B);
 
 #endif // CONSTRUCTORS_CHECK
 
+#ifdef DISTANCE_CHECK
 	Point A(2, 3);
 	Point B(7, 8);
 
@@ -103,5 +118,8 @@ void main()
 
 	cout << endl;
 	cout << "Расстояние от точки 'A' до точки 'B': " << A.distance(B) << endl;
+	cout << "Расстояние от точки 'B' до точки 'A': " << B.distance(A) << endl;
+#endif // DISTANCE_CHECK
+
 	
 }
