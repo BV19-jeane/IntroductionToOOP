@@ -1,8 +1,8 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
 #define delimiter "\n----------------------------------------------\n"
 
-//Объявляя структуру или класс мы создаем новый тип данных (пользовательский тип данных)
+//РћР±СЉСЏРІР»СЏСЏ СЃС‚СЂСѓРєС‚СѓСЂСѓ РёР»Рё РєР»Р°СЃСЃ РјС‹ СЃРѕР·РґР°РµРј РЅРѕРІС‹Р№ С‚РёРї РґР°РЅРЅС‹С… (РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёР№ С‚РёРї РґР°РЅРЅС‹С…)
 class Point
 {
 	double x;
@@ -62,7 +62,7 @@ public:
 		return *this;
 	}
 
-	Point& operator++() //префиксный инкремент
+	Point& operator++() //РїСЂРµС„РёРєСЃРЅС‹Р№ РёРЅРєСЂРµРјРµРЅС‚
 	{
 		x++;
 		y++;
@@ -76,13 +76,13 @@ public:
 		y++;
 		return old;
 	}
-	// Methods д/з от 04.06.24:
+	// Methods Рґ/Р· РѕС‚ 04.06.24:
 	double distance(Point other)
 	{
 		double x_distance = this->x - other.x;
 		double y_distance = this->y - other.y;
 		double distance = sqrt(x_distance * x_distance + y_distance * y_distance);
-		//sqrt() - Square Root (Квадратный корень)
+		//sqrt() - Square Root (РљРІР°РґСЂР°С‚РЅС‹Р№ РєРѕСЂРµРЅСЊ)
 		return distance;
 	}
 
@@ -135,10 +135,10 @@ void main()
 
 #ifdef   STRUCT_POINT
 	//cout << "Hello OOP" << endl;
-	int a;       //Объявление переменной 'a' типа 'int'
-	Point A;     //Объявление переменной 'A' типа 'Point'
-	             //Создание объекта 'A' типа 'Point'
-	             //Создание экземпляра 'A' типа 'Point'
+	int a;       //РћР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№ 'a' С‚РёРїР° 'int'
+	Point A;     //РћР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№ 'A' С‚РёРїР° 'Point'
+	             //РЎРѕР·РґР°РЅРёРµ РѕР±СЉРµРєС‚Р° 'A' С‚РёРїР° 'Point'
+	             //РЎРѕР·РґР°РЅРёРµ СЌРєР·РµРјРїР»СЏСЂР° 'A' С‚РёРїР° 'Point'
 	A.x = 2;
 	A.y = 3;
 	cout << A.x << "\t" << A.y << endl;
@@ -171,7 +171,7 @@ void main()
 	A.distance(B);
 
 #endif // CONSTRUCTORS_CHECK
-
+	
 #ifdef DISTANCE_CHECK
 	Point A(2, 3);
 	Point B(7, 8);
@@ -180,13 +180,13 @@ void main()
 	B.print();
 
 	cout << endl;
-	cout << "Расстояние от точки 'A' до точки 'B': " << A.distance(B) << endl;
+	cout << "Р Р°СЃСЃС‚РѕСЏРЅРёРµ РѕС‚ С‚РѕС‡РєРё 'A' РґРѕ С‚РѕС‡РєРё 'B': " << A.distance(B) << endl;
 	cout << delimiter << endl;
-	cout << "Расстояние от точки 'B' до точки 'A': " << B.distance(A) << endl;
+	cout << "Р Р°СЃСЃС‚РѕСЏРЅРёРµ РѕС‚ С‚РѕС‡РєРё 'B' РґРѕ С‚РѕС‡РєРё 'A': " << B.distance(A) << endl;
 	cout << delimiter << endl;
-	cout << "Расстояние между точками 'A' и 'B': " << distance(A, B) << endl;
+	cout << "Р Р°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ С‚РѕС‡РєР°РјРё 'A' Рё 'B': " << distance(A, B) << endl;
 	cout << delimiter << endl;
-	cout << "Расстояние между точками 'B' и 'A': " << distance(B, A) << endl;
+	cout << "Р Р°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ С‚РѕС‡РєР°РјРё 'B' Рё 'A': " << distance(B, A) << endl;
 #endif // DISTANCE_CHECK
 
 #ifdef ASSIGNMENT_CHECK
@@ -197,10 +197,10 @@ void main()
 	Point A, B, C;
 
 	cout << delimiter << endl;
-	A = B = C = Point(2, 3); //Point(2, 3) - явно вызываем конструктор
-							 // и создаем временный безымянный объект
-							 // этот объект и передается как параметр
-							 // в первый CopyAssignment
+	A = B = C = Point(2, 3); //Point(2, 3) - СЏРІРЅРѕ РІС‹Р·С‹РІР°РµРј РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+							 // Рё СЃРѕР·РґР°РµРј РІСЂРµРјРµРЅРЅС‹Р№ Р±РµР·С‹РјСЏРЅРЅС‹Р№ РѕР±СЉРµРєС‚
+							 // СЌС‚РѕС‚ РѕР±СЉРµРєС‚ Рё РїРµСЂРµРґР°РµС‚СЃСЏ РєР°Рє РїР°СЂР°РјРµС‚СЂ
+							 // РІ РїРµСЂРІС‹Р№ CopyAssignment
 	cout << delimiter << endl;
 
 	A.print();
