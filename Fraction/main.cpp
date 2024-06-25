@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+//#define delimiter "\n-------------------------------------n\"
 
 class Fraction
 {
@@ -27,7 +28,7 @@ public:
 	{
 		this->numerator = numerator;
 	}
-	void set_denominator(int denomirator)
+	void set_denominator(int denominator)
 	{
 		if (denominator == 0) denominator = 1;
 		this->denominator = denominator;
@@ -41,13 +42,24 @@ public:
 		set_denominator(1);
 		cout << "DefoltConstrucrot:\t" << this << endl;
 	}
-	Fraction(int integer)
+	/*explicit*/ Fraction(int integer)
 	{
 		this->integer = integer;
 		this->numerator = 0;
 		set_denominator(1);
-		cout << "SingleArgumentConstructor";
+		cout << "SingleArgumentConstructor:" << this << endl;
 	}
+
+	/*Fraction(double decimal)
+	{
+		integer = decimal; //decimal - десятичный
+		decimal -= integer; //убираем целую часть из десятичной дроби
+		denominator = 1e+9; //записываем максимально-возможный знаменатель
+		numerator = decimal * denominator;
+
+		cout << "DoubleConstructor:\t" << this << endl;
+	}*/
+
 	Fraction(int numerator, int denominator)
 	{
 		this->integer = 0;
@@ -62,31 +74,53 @@ public:
 		set_denominator(denominator);
 		cout << "Constructor:\t\t" << this << endl;
 	}
+
+	/*	Fraction(const Fraction& other)
+		{
+			this->integer = other.integer;
+			this->numerator = other.numerator;
+			this->denominator = other.denominator;
+			cout << "CopyConstructor: \t" << this << endl;
+		}*/
 	~Fraction()
 	{
-		cout << "Destructor:\t" << this << endl;
+		cout << "Destructor:\t\t" << this << endl;
 	}
 
-	//       Methods:
-	Fraction& to_improper()
+	//                     Type - cast operators:
+	//type name(parameters)
+	/*explicit operator int()
 	{
-		numerator += integer * denominator;
-		integer = 0;
-		return *this;
-	}
-	Fraction& to_proper()
-	{
-		integer += numerator / denominator;
-		numerator %= denominator;
-		return *this;
-	}
-	Fraction inverted()const
-	{
-		Fraction inverted = *this;
-		inverted.to_proper();
-		swap(inverted.numerator, inverted.denominator);
-		return inverted;
-	}
+		return to_proper().integer;
+		//to_proper();
+		//return integer;
+	}*/
+
+	/*	explicit operator double()const
+		{
+			return integer + (double)numerator / denominator;
+		}*/
+
+		//                          Methods:
+		Fraction& to_improper()
+		{
+			numerator += integer * denominator;
+			integer = 0;
+			return *this;
+		}
+		Fraction& to_proper()
+		{
+			integer += numerator / denominator;
+			numerator %= denominator;
+			return *this;
+		}
+		/*Fraction inverted()const
+		{
+			Fraction inverted = *this;
+			inverted.to_proper();
+			swap(inverted.numerator, inverted.denominator);
+			return inverted;
+		}*/
 
 	void print()const
 	{
@@ -107,54 +141,91 @@ Fraction operator*(Fraction& left, Fraction& right)
 {
 	left.to_improper();
 	right.to_improper();
-/*	Fraction result;
-	result.set_numerator(left.get_numerator()*right.);*/
+	Fraction result;
+	result.set_numerator(left.get_numerator()*right.get_numerator());
+	result.set_denominator(left.get_denominator()*right.get_denominator());
+	return result;
 
-/*	Fraction result
-	{
-		left.get_numerator() * right.to_numerator();
-	left.get_denominator() * right.get_denominator();
-	}*/
-
-	return Fraction
-	{
-		left.get_numerator() * right.get_denominator(),
-		left.get_denominator() * right.get_denominator()
-	}.to_proper();
 }
-Fraction operator / (const Fraction& left, const Fraction right)
-{
-	return left*right.inverted();
-}
+	/*	Fraction result;
+		result.set_numerator(left.get_numerator()*right.);*/
 
-//#define CONSTRACTION_CHECK
+		/*	Fraction result
+			{
+				left.get_numerator() * right.to_numerator();
+			left.get_denominator() * right.get_denominator();
+			}*/
 
+			/*return Fraction
+			{
+				left.get_numerator() * right.get_denominator(),
+				left.get_denominator() * right.get_denominator()
+			}.to_proper();
+		}*/
+		/*Fraction operator / (const Fraction& left, const Fraction right)
+		{
+			return left*right.inverted();
+		}*/
+
+//#define CONSTRUCTORS_CHECK
+//#define CONVERTION_FROM_OTHER_TO_CLASS
+//#define CONVERSION_HOME_WORK
 
 void main()
 {
 	setlocale(LC_ALL, "");
 
-#ifdef CONSTRACTION_CHECK
-	
+#ifdef CONSTRUCTORS_CHECK
+
 	Fraction A; //default constructor
 	A.print();
 
 	Fraction B = 5; // single-argument constructor
 	B.print();
 
-	Fraction C(1, 2);
+	Fraction C(1, 2); //обычный параметризованный конструктор
 	C.print();
 
-	Fraction D(2, 3 , 4);	D.print();
-#endif // CONSTRACTION_CHECK
+	Fraction D(2, 3, 4);
+	D.print();
 
-	Fraction A(2, 3, 4);
-	A.print();
-	Fraction B(3, 4, 5);
-	B.print();
-	A.to_improper().print();
+#endif // CONSTRUCTORS_CHECK
 
-	Fraction C = A / B;
-	C.print();
+#ifdef CONVERSION_HOME_WORk
+	Fraction A = 2.75; //Conversion from 'double' to 'Fraction'
+	cout << A << endl;
+#endif // CONVERSION_HOME_WORK
+
+	/*	Fraction A(2, 3, 4);
+		A.to_improper();
+		cout << A << endl;
+
+		int a = A;
+		cout << a << endl;
+		double da = A;
+		cout << da << endl;*/
+
+	    Fraction A(2, 3, 4);
+		A.print();
+		Fraction B(3, 4, 5);
+		B.print();
+		A.to_improper().print();
+		A.to_proper().print();
+
+		Fraction C = A * B;
+		C.print();
+		/*cout << delimiter << endl;*/
+
+		/*Fraction A = (Fraction)5;
+
+		cout << A << endl;
+		cout << delimiter << endl;
+
+		Fraction B;  //Default constractor
+		B = Fraction(8);       //Convertion from less to more
+					 //CopyAssignment
+		cout << delimiter << endl;
+		cout << B << endl;
+		cout << delimiter << endl;*/
 
 }

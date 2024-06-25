@@ -77,7 +77,9 @@ public:
 		return old;
 	}
 	// Methods д/з от 04.06.24:
-	double distance(Point other)
+	double distance(Point& other) //передаем объект в ф-цию по ссылке
+								  //double distance(Point other
+								  //- передаем объект в ф-цию по значению
 	{
 		double x_distance = this->x - other.x;
 		double y_distance = this->y - other.y;
@@ -93,13 +95,15 @@ public:
 	}
 };
 
-double distance(Point A, Point B)
-{
-	double x_distance = A.get_x() - B.get_x();
-	double y_distance = A.get_y() - B.get_y();
-	double distance = sqrt(x_distance * x_distance + y_distance * y_distance);
-	return distance;
-}
+	double distance(Point& A, Point& B) //передаем объект в ф-цию по ссылке
+									    //double distance(Point A, Point B) 
+									    //- передаем объект в ф-цию по значению
+	{
+		double x_distance = A.get_x() - B.get_x();
+		double y_distance = A.get_y() - B.get_y();
+		double distance = sqrt(x_distance * x_distance + y_distance * y_distance);
+		return distance;
+	}
 
 Point operator+(const Point& left, const Point& right)
 {
@@ -164,7 +168,7 @@ void main()
 	Point D = C; //Copy constructor
 	D.print();
 
-	Point E;
+	Point E;     //Copy assignment
 	E = D;
 	E.print();
 
@@ -178,8 +182,7 @@ void main()
 
 	A.print();
 	B.print();
-
-	cout << endl;
+	cout << delimiter << endl;
 	cout << "Расстояние от точки 'A' до точки 'B': " << A.distance(B) << endl;
 	cout << delimiter << endl;
 	cout << "Расстояние от точки 'B' до точки 'A': " << B.distance(A) << endl;
@@ -187,6 +190,7 @@ void main()
 	cout << "Расстояние между точками 'A' и 'B': " << distance(A, B) << endl;
 	cout << delimiter << endl;
 	cout << "Расстояние между точками 'B' и 'A': " << distance(B, A) << endl;
+	cout << delimiter << endl;
 #endif // DISTANCE_CHECK
 
 #ifdef ASSIGNMENT_CHECK
