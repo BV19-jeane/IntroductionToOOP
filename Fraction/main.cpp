@@ -1,12 +1,12 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
 //#define delimiter "\n-------------------------------------n\"
 
 class Fraction
 {
-	int integer; //целая часть
-	int numerator; //числитель
-	int denominator; //знаменатель
+	int integer; //С†РµР»Р°СЏ С‡Р°СЃС‚СЊ
+	int numerator; //С‡РёСЃР»РёС‚РµР»СЊ
+	int denominator; //Р·РЅР°РјРµРЅР°С‚РµР»СЊ
 public:
 	int get_integer()const
 	{
@@ -52,9 +52,9 @@ public:
 
 	/*Fraction(double decimal)
 	{
-		integer = decimal; //decimal - десятичный
-		decimal -= integer; //убираем целую часть из десятичной дроби
-		denominator = 1e+9; //записываем максимально-возможный знаменатель
+		integer = decimal; //decimal - РґРµСЃСЏС‚РёС‡РЅС‹Р№
+		decimal -= integer; //СѓР±РёСЂР°РµРј С†РµР»СѓСЋ С‡Р°СЃС‚СЊ РёР· РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё
+		denominator = 1e+9; //Р·Р°РїРёСЃС‹РІР°РµРј РјР°РєСЃРёРјР°Р»СЊРЅРѕ-РІРѕР·РјРѕР¶РЅС‹Р№ Р·РЅР°РјРµРЅР°С‚РµР»СЊ
 		numerator = decimal * denominator;
 
 		cout << "DoubleConstructor:\t" << this << endl;
@@ -183,7 +183,7 @@ void main()
 	Fraction B = 5; // single-argument constructor
 	B.print();
 
-	Fraction C(1, 2); //обычный параметризованный конструктор
+	Fraction C(1, 2); //РѕР±С‹С‡РЅС‹Р№ РїР°СЂР°РјРµС‚СЂРёР·РѕРІР°РЅРЅС‹Р№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	C.print();
 
 	Fraction D(2, 3, 4);
