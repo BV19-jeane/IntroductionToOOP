@@ -147,7 +147,8 @@ Fraction operator*(Fraction& left, Fraction& right)
 	return result;
 
 }
-	/*	Fraction result;
+
+/*	Fraction result;
 		result.set_numerator(left.get_numerator()*right.);*/
 
 		/*	Fraction result
@@ -214,6 +215,8 @@ void main()
 
 		Fraction C = A * B;
 		C.print();
+
+		
 		/*cout << delimiter << endl;*/
 
 		/*Fraction A = (Fraction)5;
